@@ -11,7 +11,6 @@
 
 3. **Подключитесь к базе данных**:
    - Используйте DBeaver для подключения к контейнеру с базой данных.
-   - Создайте таблицы и заполните их данными, выполнив соответствующие SQL-скрипты.
    - Модифицируйте таблицу `dwh.f_orders`, замените её определение на это:
 
 ```sql
@@ -41,6 +40,8 @@ COMMENT ON COLUMN dwh.f_orders.order_completion_date IS 'дата выполне
 COMMENT ON COLUMN dwh.f_orders.order_status IS 'статус выполнения заказа (created, in progress, delivery, done)';
 COMMENT ON COLUMN dwh.f_orders.load_dttm IS 'дата и время загрузки';
 ```
+   - Создайте таблицы и заполните их данными, выполнив соответствующие SQL-скрипты.
+  
 4. **Работа с Spark Notebook**:
    - В контейнер `spark_notebook` вмонтирована папка `spark_scripts`, содержащая блокнот (notebook).
    - Откройте блокнот в Jupyter Notebook
