@@ -40,7 +40,7 @@ COMMENT ON COLUMN dwh.f_orders.order_created_date IS 'дата создания 
 COMMENT ON COLUMN dwh.f_orders.order_completion_date IS 'дата выполнения заказа';
 COMMENT ON COLUMN dwh.f_orders.order_status IS 'статус выполнения заказа (created, in progress, delivery, done)';
 COMMENT ON COLUMN dwh.f_orders.load_dttm IS 'дата и время загрузки';
-
+```
 4. **Работа с Spark Notebook**:
    - В контейнер `spark_notebook` вмонтирована папка `spark_scripts`, содержащая блокнот (notebook).
    - Откройте блокнот в Jupyter Notebook
