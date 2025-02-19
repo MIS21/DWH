@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: craft_market_db
+    restart: always
+    ports:
+      - "5232:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: craft_market
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - craft_network
+
+  spark:
+    image: jupyter/all-spark-notebook
+    container_name: spark_notebook
+    ports:
+      - "8888:8888"  # Jupyter Lab UI
+      - "4040:4040"  # Spark UI
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    depends_on:
+      - postgres
+    networks:
+      - craft_network
+    volumes:
+      - ./spark_scripts:/home/jovyan/work
+    command: >
+      bash -c "
+        wget https://jdbc.postgresql.org/download/postgresql-42.7.1.jar -O /home/jovyan/work/postgresql-42.7.1.jar &&
+        start-notebook.sh
+      "
+
+volumes:
+  postgres_data:
+
+networks:
+  craft_network:
+    driver: bridge
